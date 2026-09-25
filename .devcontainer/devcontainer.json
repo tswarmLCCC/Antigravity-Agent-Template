@@ -1,0 +1,28 @@
+{
+  "name": "Campus AI Curriculum Sandbox",
+  "image": "mcr.microsoft.com/devcontainers/python:3.11",
+  
+  "customizations": {
+    "vscode": {
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "bash"
+      },
+      "extensions": [
+        "ms-python.python"
+      ]
+    }
+  },
+
+  "remoteUser": "vscode",
+  "runArgs": [
+    "--security-opt", "no-new-privileges:true"
+  ],
+
+  "mounts": [
+    // CRITICAL: Replace 'T:\\MasterCurriculum' with your actual campus network drive path.
+    // The ':ro' ensures the AI can read 10 years of data but physically cannot delete or alter it.
+    "source=T:\\MasterCurriculum,target=/workspaces/${localWorkspaceFolderBasename}/legacy_data,type=bind,readonly"
+  ],
+
+  "postCreateCommand": "pip install markitdown python-pptx jupyter"
+}
